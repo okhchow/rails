@@ -1,0 +1,36 @@
+%h1 Players in the community
+
+%p= "#{ @gamers.length } users have signed up!"
+
+%p
+  = form_tag( gamers_path, :method => :post ) do
+    Join now!
+    %table.form
+      %tr
+        %th Username:
+        %td= text_field_tag( "tag", nil, :maxlength => 50 )
+      %tr
+        %th First Name:
+        %td= text_field_tag( "firstname", nil, :maxlength => 255 )
+      %tr
+        %th Last Name:
+        %td= text_field_tag( "lastname", nil, :maxlength => 255 )
+      %tr
+        %td.align_right= check_box_tag( "show_last_name", "1", true )
+        %td Show last name in profile
+      %tr
+        %th Password:
+        %td= password_field_tag( "password", nil, :maxlength => 255 )
+      %tr
+        %th Confirm Password:
+        %td= password_field_tag( "cpassword", nil, :maxlength => 255 )
+      %tr
+        %td= submit_tag( "Create account" )
+
+%p
+  %table.big
+    %tr
+      %th User Tag
+    - @gamers.each do | gamer |
+      %tr
+        %td= gamer.tag
